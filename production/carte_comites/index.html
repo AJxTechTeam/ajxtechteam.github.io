@@ -38,7 +38,7 @@
     <script>
       L.mapbox.accessToken = 'pk.eyJ1IjoibWFwYm94YWp4IiwiYSI6ImNpZ3V3dDB2czAwMzl2Zmtyb2JubXJyZGcifQ.lvgfI_Yjd5PRRoi2HB3GQQ';
       // Create a map in the div #map
-      var map = L.mapbox.map('map', 'mapboxajx.a6594fec', {maxZoom: 14}).setView([47.66538735632654, 2.900390625], 6).on('ready', function() { map.maxZoom = 14; });
+      var map = L.mapbox.map('map', 'mapboxajx.a6594fec', {maxZoom: 14}).setView([47.66538735632654, 0.600390625], 6).on('ready', function() { map.maxZoom = 14; });
       var featureLayerAJ = L.mapbox.featureLayer()
                           .loadURL('comites_aj.json')
                           .addTo(map);
