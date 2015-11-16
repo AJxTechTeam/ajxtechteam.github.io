@@ -4,6 +4,7 @@
     <meta charset=utf-8 />
     <title>Démo Mapbox Alain Juppé</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
     <style>
@@ -24,6 +25,14 @@
         text-align: left;
         padding-bottom:5px;
       }
+      .search-ui {
+        position:absolute;
+        top:20px;
+        right:20px;
+        font-size: 20px;
+        width: 350px;
+        z-index:1000;
+      }
     </style>
   </head>
   <body>
@@ -34,7 +43,9 @@
         <span style='background:#f86767;'></span><label>Comité Jeunes avec Juppé</label>
       </nav>
     </div>
+
     <div id='map'></div>
+    <input id='search' class='search-ui' placeholder='Rechercher une ville, un code postal...' />
     <script>
       L.mapbox.accessToken = 'pk.eyJ1IjoibWFwYm94YWp4IiwiYSI6ImNpZ3V3dDB2czAwMzl2Zmtyb2JubXJyZGcifQ.lvgfI_Yjd5PRRoi2HB3GQQ';
       // Create a map in the div #map
@@ -46,6 +57,23 @@
                           .loadURL('comites_jaj.json')
                           .addTo(map);
       map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+      $('#search').keyup(search);
+
+      function search() {
+          // get the value of the search input field
+          var searchString = $('#search').val().toLowerCase();
+
+          featureLayerJAJ.setFilter(showState);
+          featureLayerAJ.setFilter(showState);
+
+          // here we're simply comparing the 'state' property of each marker
+          // to the search string, seeing whether the former contains the latter.
+          function showState(feature) {
+              return feature.properties.description
+                  .toLowerCase()
+                  .indexOf(searchString) !== -1;
+          }
+      }
       </script>
   </body>
 </html>
