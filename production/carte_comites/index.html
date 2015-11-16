@@ -45,7 +45,7 @@
     </div>
 
     <div id='map'></div>
-    <input id='search' class='search-ui' placeholder='Rechercher une ville, un code postal...' />
+    <input id='search' class='search-ui' placeholder='Rechercher une ville ou un code postal...' />
     <script>
       L.mapbox.accessToken = 'pk.eyJ1IjoibWFwYm94YWp4IiwiYSI6ImNpZ3V3dDB2czAwMzl2Zmtyb2JubXJyZGcifQ.lvgfI_Yjd5PRRoi2HB3GQQ';
       // Create a map in the div #map
@@ -60,14 +60,11 @@
       $('#search').keyup(search);
 
       function search() {
-          // get the value of the search input field
           var searchString = $('#search').val().toLowerCase();
 
           featureLayerJAJ.setFilter(showState);
           featureLayerAJ.setFilter(showState);
 
-          // here we're simply comparing the 'state' property of each marker
-          // to the search string, seeing whether the former contains the latter.
           function showState(feature) {
               return feature.properties.description
                   .toLowerCase()
