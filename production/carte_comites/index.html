@@ -154,7 +154,7 @@
                     .indexOf(searchString) !== -1;
             }
         }
-        $(document).on('change','#comites_monde_list', function() {
+        $('#comites_monde_list').on('change', function() {
           [lng,lat] = $(this).val().split(',');
           map.setView([lat,lng], 5);
         });
