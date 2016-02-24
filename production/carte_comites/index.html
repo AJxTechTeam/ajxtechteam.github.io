@@ -155,7 +155,8 @@
             }
         }
         $('#comites_monde_list').on('change', function() {
-          [lng,lat] = $(this).val().split(',');
+          lng = $(this).val().split(',')[0];
+          lat = $(this).val().split(',')[1];
           map.setView([lat,lng], 5);
         });
       });
